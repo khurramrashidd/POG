@@ -3,7 +3,7 @@
 An interactive, presentation-ready dashboard demonstrating **Proof-of-Generation (PoG)** — a cryptographic framework designed to ensure verifiable trust, authenticity, and tamper detection in AI-generated data within IoT networks.
 
 > **"In the future, trust will not be assumed — it will be verified."**
-
+Test the demo = https://pog-ublu.onrender.com
 ---
 
 ## 🚀 The Core Concept
