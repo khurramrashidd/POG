@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
+/* Global Reset for Responsive Sizing */
+* {
+    box-sizing: border-box;
+}
+
 :root {
     /* Dark Theme (Default) */
     --bg-main: #0f172a;
@@ -49,6 +54,7 @@ body {
     flex-direction: column;
     align-items: center;
     transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
 }
 
 header {
@@ -56,11 +62,13 @@ header {
     margin: 40px 0 20px;
     position: relative;
     width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
 }
 
 .theme-toggle {
     position: absolute;
-    right: 5%;
+    right: 20px;
     top: 0;
     background: var(--card-bg);
     border: 1px solid var(--border);
@@ -75,6 +83,7 @@ header {
     font-size: 1.2rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px var(--shadow);
+    z-index: 10;
 }
 
 .theme-toggle:hover {
@@ -89,19 +98,21 @@ h1 {
     background: linear-gradient(90deg, #3b82f6, #10b981);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    padding: 0 10px;
 }
 
 header p {
     color: var(--text-muted);
     font-size: 1.1rem;
     font-weight: 300;
+    padding: 0 10px;
 }
 
 .container {
     display: flex;
     justify-content: center;
     gap: 30px;
-    width: 90%;
+    width: 95%;
     max-width: 1200px;
     margin-bottom: 50px;
 }
@@ -116,6 +127,7 @@ header p {
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .card:hover { transform: translateY(-5px); }
@@ -143,22 +155,25 @@ select {
     background: var(--input-bg);
     color: var(--text-main);
     border: 1px solid var(--border);
-    padding: 10px;
+    padding: 12px 10px; /* Increased padding for touch targets */
     border-radius: 8px;
     flex: 1;
     font-family: inherit;
+    font-size: 1rem;
     outline: none;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 20px; /* Increased padding for touch targets */
     border: none;
     background: var(--primary);
     color: white;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
+    font-size: 1rem;
     transition: all 0.2s;
     display: flex;
     align-items: center;
@@ -184,7 +199,7 @@ textarea {
     padding: 15px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
-    resize: none;
+    resize: vertical; /* Allow vertical resizing only */
     box-sizing: border-box;
     margin-bottom: 15px;
     outline: none;
@@ -209,6 +224,7 @@ textarea:focus { border-color: var(--primary); }
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     font-weight: 600;
     opacity: 0;
     transform: translateY(10px);
@@ -223,12 +239,12 @@ textarea:focus { border-color: var(--primary); }
 
 .hash-container {
     background: var(--hash-bg);
-    padding: 10px;
+    padding: 12px;
     border-radius: 6px;
     font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
-    word-wrap: break-word;
+    word-break: break-all; /* Ensures long hashes wrap nicely on mobile */
     margin-bottom: 15px;
     display: none;
     border: 1px solid var(--border);
@@ -237,3 +253,68 @@ textarea:focus { border-color: var(--primary); }
 
 .spinner { animation: spin 1s linear infinite; }
 @keyframes spin { 100% { transform: rotate(360deg); } }
+
+
+/* =========================================
+   📱 RESPONSIVE MEDIA QUERIES
+   ========================================= */
+
+/* Tablets and smaller desktops */
+@media (max-width: 850px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+
+    /* Move toggle to top right so it doesn't overlap centered text */
+    header {
+        margin: 30px 0 15px;
+    }
+    
+    .theme-toggle {
+        top: -15px;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+        margin-top: 15px;
+    }
+
+    header p {
+        font-size: 0.95rem;
+    }
+
+    .theme-toggle {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+        top: -20px;
+        right: 15px;
+    }
+
+    .card h2 {
+        font-size: 1.3rem;
+    }
+
+    /* Stack inputs and buttons vertically on very small screens */
+    .control-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .control-group button {
+        width: 100%;
+    }
+
+    button {
+        padding: 14px 20px; /* Larger touch targets for mobile */
+    }
+}
