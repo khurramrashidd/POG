@@ -62,4 +62,4 @@ def after_verify():
         })
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
